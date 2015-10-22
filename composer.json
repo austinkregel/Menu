@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Kregel\\Menu": "src/Menu"
+            "Kregel\\Menu\\": "src/Menu"
         }
     },
     "minimum-stability": "stable"
