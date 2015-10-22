@@ -1,0 +1,20 @@
+{
+    "name": "kregel/menu",
+    "description": "",
+    "authors": [
+        {
+            "name": "Austin Kregel",
+            "email": "me@austinkregel.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kregel\\Menu": "src/Menu"
+        }
+    },
+    "minimum-stability": "stable"
+}
