@@ -1,4 +1,5 @@
-<?php namespace Kregel\Menu;
+<?php 
+namespace Kregel\Menu;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +20,22 @@ class MenuServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'menu');
+        $this->publishes([
+            __DIR__.'/../resources/views' => base_path('resources/views/vendor/menu'),
+        ], 'views');
+
+        $this->publishes([
+            __DIR__.'/../config/config.php' => config_path('kregel/menu.php'),
+        ], 'config');
     }
 
     /**
