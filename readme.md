@@ -13,7 +13,10 @@ This is an menu generator build with Laravel and Bootstrap in mind
   ]
 ```
 
- 3. Publish our config `php artisan vendor:publish --provider="Kregel\Menu\MenuServiceProvider"`
+ 3. Publish our config 
+ ```php 
+ php artisan vendor:publish --provider="Kregel\Menu\MenuServiceProvider"
+ ```
  
  4. Which ever blade file is storing your current nav set up just add ONE line of code to replace your whole menu system and where ever you start your menu, just replace it with what's below.
 
