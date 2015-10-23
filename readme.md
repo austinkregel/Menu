@@ -13,18 +13,12 @@ This is an menu generator build with Laravel and Bootstrap in mind
   ]
 ```
 
- 3. Which ever blade file is storing your current nav set up just add two lines of code to it and replace the majority of your file...
-
- At the top add
-
- ```php
-@inject('menu', 'Kregel\Menu\Menu')
- ```
+ 3. Publish our config `php artisan vendor:publish --provider="Kregel\Menu\MenuServiceProvider"`
  
-and where ever you start your list item for your nav menu add the following (if your using bootstrap that is...)
+ 4. Which ever blade file is storing your current nav set up just add ONE line of code to replace your whole menu system and where ever you start your menu, just replace it with what's below.
 
 ```php
-{!! $menu->using('bootstrap')->config()->devour() !!}
+@include('menu::main.bootstrap')
 ```
 
 Other frameworks will be supported at a later time, the Materialize framework is being worked on right now.
