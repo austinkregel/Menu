@@ -58,21 +58,22 @@ abstract class AbstractMenu{
      */
     abstract public function devour();
     
-    // *
-    //  * This should be the base that joins your menu with the base menu.
-    //  * @return 
-     
+    /**
+     * This should be the base that joins your menu with the base menu. - depreciated.
+     * @return 
+     */
     // abstract public function mainMenu();
     /**
      * This will build the link
      * @param  A link object.
      * @return [type]       [description]
      */
-    protected function linkBuilder($link){
+    protected function linkBuilder($link)
+    {
 
         if(is_array($link)){
             list($route, $params) = $link;
-            if(\Route::has($route))
+            if(\Route::has($route)){
                 if($params instanceof Closure){
                     $link = route($route, $this->run($params));
                 }elseif(is_array($params)){
@@ -80,16 +81,18 @@ abstract class AbstractMenu{
                 }else{
                     $link = route($route, $params());
                 }   
-            else
+            } else {
                 if($params instanceof Closure)
                     $link = url($route, $this->run($params));
                 else
                     $link = url($route, $params);
-        }else
+            }
+        } else {
             if(\Route::has($link))
                 $link = route($link);
             else
                 $link = url($link);
+        }
         return $link;
     }
 
