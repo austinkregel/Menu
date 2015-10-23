@@ -51,17 +51,18 @@ abstract class AbstractMenu{
      * @return [type] [description]
      */
     abstract public function config();
-    
+
     /**
      * Builds the entire HTML / DOM for the menu
      * @return HTML / DOM
      */
     abstract public function devour();
-    /**
-     * This should be the base that joins your menu with the base menu.
-     * @return 
-     */
-    abstract public function mainMenu();
+    
+    // *
+    //  * This should be the base that joins your menu with the base menu.
+    //  * @return 
+     
+    // abstract public function mainMenu();
     /**
      * This will build the link
      * @param  A link object.

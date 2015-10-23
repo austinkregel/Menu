@@ -1,8 +1,11 @@
 <?php
 namespace Kregel\Menu\Frameworks;
-use Kregel\Menu\Interfaces\AbstractMenu;
-class Bootstrap extends AbstractMenu{
 
+use Auth;
+use Kregel\Menu\Interfaces\AbstractMenu;
+
+class Bootstrap extends AbstractMenu
+{
     public $menu = '';
 
     public function add(Array $options)
@@ -34,12 +37,15 @@ class Bootstrap extends AbstractMenu{
 
     public function config()
     {
-
-    	$this->menu = '';
-        $configArray = config('kregel.menu.items');
-        
-        $this->menu .= $this->add($configArray);
-        
+        $this->menu = '';
+        $this->menu .= $this->add(config('kregel.menu.items'));
+        if(config('kregel.menu.login.enabled')){
+            if (Auth::check()) {
+                $this->menu .= $this->add(config('kregel.menu.login.sign-out'));
+            } else{
+                $this->menu .= $this->add(config('kregel.menu.login.sign-in'));
+            }
+        }
         return $this;
     }
 
@@ -51,12 +57,13 @@ class Bootstrap extends AbstractMenu{
     protected function build($item_name, $menu, $attributes = [])
     {
         // die(var_dump($menu));
-        if(!empty($menu['icon']))
-            if(is_array($menu['icon'])){
+        if (!empty($menu['icon'])) {
+            if (is_array($menu['icon'])) {
                 $icon = implode('', $menu['icon']);
             } else {
                 $icon = $menu['icon'];
             }
+        }
         return '<li>
                 <a '.$this->attributes(['href'=>$this->linkBuilder($menu['link']), $attributes]).'>
                '.(!empty($icon)?'<i '.$this->attributes(['class'=> $icon]).'></i>
@@ -64,15 +71,17 @@ class Bootstrap extends AbstractMenu{
               </a>
             </li>
             ';
-    }    
+    }
     /**
      * This returns the value of the menu.
      * @return String
      */
-    public function devour(){
+    public function devour()
+    {
         return $this->menu;
     }
-    public function mainMenu(){
-    	return view('menu::main.bootstrap');
-    }
+    // public function mainMenu()
+    // {
+    //     return view('menu::main.bootstrap');
+    // }
 }
