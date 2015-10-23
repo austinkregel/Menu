@@ -1,6 +1,7 @@
 {
     "name": "kregel/menu",
     "description": "",
+    "keywords":["menu", "automatic-menu", "laravel", "generate-menu"],
     "authors": [
         {
             "name": "Austin Kregel",
