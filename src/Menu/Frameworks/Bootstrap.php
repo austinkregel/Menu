@@ -32,7 +32,6 @@ class Bootstrap extends AbstractMenu
             '.$this->add($elements).'
           </ul>
         </li>';
-        // Need to figure out.
     }
 
     public function config()
@@ -80,8 +79,4 @@ class Bootstrap extends AbstractMenu
     {
         return $this->menu;
     }
-    // public function mainMenu()
-    // {
-    //     return view('menu::main.bootstrap');
-    // }
 }
