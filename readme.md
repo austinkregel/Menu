@@ -38,10 +38,6 @@ How can I build my own framework for this menu system? All you need to do is (so
 
 ```php
 class MyFramework extends Kregel\Menu\Interfaces\AbstractMenu{
-    public function bulidMenu($menu)
-    {
-		//
-	}
     public function add(Array $options)
     {
 		//
