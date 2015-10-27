@@ -27,7 +27,7 @@ return [
             // And is  only shown when the user is not logged in!
             'Login' =>[
                 'link' => 'login',
-                'icon' => 'fa fa-login'
+                'icon' => 'fa fa-sign-in'
             ],
             'Register' => [
                 'link' => 'register',
