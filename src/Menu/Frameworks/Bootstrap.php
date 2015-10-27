@@ -63,13 +63,23 @@ class Bootstrap extends AbstractMenu
                 $icon = $menu['icon'];
             }
         }
-        return '<li>
-                <a '.$this->attributes(['href'=>$this->linkBuilder($menu['link']), $attributes]).'>
-               '.(!empty($icon)?'<i '.$this->attributes(['class'=> $icon]).'></i>
-                &nbsp;':'').$item_name.'
-              </a>
-            </li>
+        if(!is_array($menu)){
+            if(empty($item_name))
+                return '<li class="dropdown-header">'.$menu.'</li>';
+             else
+                 return '<li class="divider"></li>';
+        }
+        try {
+            return '<li>
+                    <a ' . $this->attributes(['href' => $this->linkBuilder($menu['link']), $attributes]) . '>
+                   ' . (!empty($icon) ? '<i ' . $this->attributes(['class' => $icon]) . '></i>
+                    &nbsp;' : '') . $item_name . '
+                  </a>
+                </li>
             ';
+        } catch(\Exception $e){
+            dd($item_name, $menu);
+        }
     }
     /**
      * This returns the value of the menu.
