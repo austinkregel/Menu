@@ -27,6 +27,7 @@ class Menu
             case 'materilize':
                 return new Frameworks\Materialize;
             default:
+                /** @var Closure $customClass */
                 $customClass = config('kregel.menu.custom-css-framework');
                 return $customClass($this);
         }

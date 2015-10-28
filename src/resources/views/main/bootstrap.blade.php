@@ -9,7 +9,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{url(config('kregel.menu.brand.link'))}}" style="padding-top: 19px;">{!! config('kregel.menu.brand.name')!!}</a>
+    <?php $name = config('kregel.menu.brand.name');?>
+    {{-- Here we must make sure that we are checking to see if the name is that of a closure
+         If it is, we need to call the closure. Otherwise we need to just spit out the data. --}}
+    @if($name instanceof Closure)
+
+      <a class="navbar-brand" href="{{url(config('kregel.menu.brand.link'))}}" style="padding-top: 19px;">{!! $name() !!}</a>
+    @else
+      <a class="navbar-brand" href="{{url(config('kregel.menu.brand.link'))}}" style="padding-top: 19px;">{!! $name !!}</a>
+    @endif
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
