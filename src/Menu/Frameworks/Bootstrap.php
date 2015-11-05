@@ -1,4 +1,5 @@
 <?php
+
 namespace Kregel\Menu\Frameworks;
 
 use Auth;
@@ -16,17 +17,18 @@ class Bootstrap extends AbstractMenu
             if (is_array($linkIconArray) && !isset($linkIconArray['link']) && !isset($linkIconArray['icon'])) {
                 $tmpmenu .= $this->addDropdown($inner_text, $linkIconArray, true);
             } elseif (is_object($linkIconArray)) {
-                $tmpmenu .= $this->addDropdown($inner_text, (Array)$linkIconArray, true);
+                $tmpmenu .= $this->addDropdown($inner_text, (Array) $linkIconArray, true);
             } else {
                 $tmpmenu .= $this->build($inner_text, $linkIconArray);
             }
         }
+
         return $tmpmenu;
     }
 
     public function addDropdown($dropdown_name, $elements, $submenu = false)
     {
-        return '<li class="dropdown'.($submenu?' submenu':'').'">
+        return '<li class="dropdown'.($submenu ? ' submenu' : '').'">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$dropdown_name.' <span class="caret"></span></a>
           <ul class="dropdown-menu">
             '.$this->add($elements).'
@@ -38,13 +40,14 @@ class Bootstrap extends AbstractMenu
     {
         $this->menu = '';
         $this->menu .= $this->add(config('kregel.menu.items'));
-        if(config('kregel.menu.login.enabled')){
+        if (config('kregel.menu.login.enabled')) {
             if (Auth::check()) {
                 $this->menu .= $this->add(config('kregel.menu.login.sign-out'));
-            } else{
+            } else {
                 $this->menu .= $this->add(config('kregel.menu.login.sign-in'));
             }
         }
+
         return $this;
     }
 
@@ -63,23 +66,25 @@ class Bootstrap extends AbstractMenu
                 $icon = $menu['icon'];
             }
         }
-        if(!is_array($menu)){
-            if(empty($item_name))
+        if (!is_array($menu)) {
+            if (empty($item_name)) {
                 return '<li class="dropdown-header">'.$menu.'</li>';
-             else
-                 return '<li class="divider"></li>';
+            } else {
+                return '<li class="divider"></li>';
+            }
         }
+
         return '<li>
-                <a ' . $this->attributes(['href' => $this->linkBuilder($menu['link']), $attributes]) . '>
-               ' . (!empty($icon) ? '<i ' . $this->attributes(['class' => $icon]) . '></i>
-                &nbsp;' : '') . $item_name . '
+                <a '.$this->attributes(['href' => $this->linkBuilder($menu['link']), $attributes]).'>
+               '.(!empty($icon) ? '<i '.$this->attributes(['class' => $icon]).'></i>
+                &nbsp;' : '').$item_name.'
               </a>
             </li>
         ';
-
     }
     /**
      * This returns the value of the menu.
+     *
      * @return String
      */
     public function devour()

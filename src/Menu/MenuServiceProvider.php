@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace Kregel\Menu;
 
 use Illuminate\Support\ServiceProvider;
@@ -14,8 +15,6 @@ class MenuServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -23,8 +22,6 @@ class MenuServiceProvider extends ServiceProvider
     }
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
     public function boot()
     {
