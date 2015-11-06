@@ -168,7 +168,6 @@ abstract class AbstractMenu
     {
         $injects = [];
         $reflectionFunction = new \ReflectionFunction($callback);
-        $someValue = [];
         foreach ($reflectionFunction->getParameters() as $parameter) {
             if ($class = $parameter->getClass()) {
                 $injects[] = app($class->name);
