@@ -1,6 +1,6 @@
 {
     "name": "kregel/menu",
-    "description": "",
+    "description": "This will automatically build/ generate a menu based upon your configuration file.",
     "keywords":["menu", "automatic-menu", "laravel", "generate-menu"],
     "authors": [
         {
