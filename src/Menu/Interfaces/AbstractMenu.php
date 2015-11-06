@@ -98,6 +98,8 @@ abstract class AbstractMenu
     protected function generateLink($route, $params = null)
     {
         if ($route instanceof Closure) {
+            // Have to stringify this before calling Route::has because it will
+            // Fail if we don't pass a string in
             $route = $this->stringify($route);
         }
         if (\Route::has($route)) {
