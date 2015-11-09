@@ -62,23 +62,25 @@ How can I build my own framework for this menu system? All you need to do is (so
 class MyFramework extends Kregel\Menu\Interfaces\AbstractMenu{
     public function add(Array $options)
     {
-		//
+		// This will add each actual menu item to the menu variable
     }
     public function addDropdown($dropdown_name, $elements)
     {
-		//
+		// This will build a dropdown ($elements should be an arary 
     }
     public function devour()
     {
-		//
+		// Should return the menu item
     }
     public function buildMenu($menu)
     {
-		//
+		// This should build the actual menu. For the config file I have
+		// And you would call it like 
+		// $menu->using('myframework')->buildMenu(['Home'=>'/']->devour()
     }
     public function config()
     {
-    	//
+    	// This would be how you handle your framework pulling form the config file.
     }
 }
 ```
