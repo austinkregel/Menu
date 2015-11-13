@@ -15,9 +15,9 @@ class Bootstrap extends AbstractMenu
         // die(var_dump($options));
         foreach ($options as $inner_text => $linkIconArray) {
             if (is_array($linkIconArray) && !isset($linkIconArray['link']) && !isset($linkIconArray['icon'])) {
-                $tmpmenu .= $this->addDropdown($inner_text, $linkIconArray, true);
+                $tmpmenu .= $this->addDropdown($inner_text, $linkIconArray, ['submenu']);
             } elseif (is_object($linkIconArray)) {
-                $tmpmenu .= $this->addDropdown($inner_text, (Array) $linkIconArray, true);
+                $tmpmenu .= $this->addDropdown($inner_text, (Array) $linkIconArray, ['submenu']);
             } else {
                 $tmpmenu .= $this->build($inner_text, $linkIconArray);
             }
@@ -26,9 +26,9 @@ class Bootstrap extends AbstractMenu
         return $tmpmenu;
     }
 
-    public function addDropdown($dropdown_name, $elements, $submenu = false)
+    public function addDropdown($dropdown_name, $elements, $classes = [])
     {
-        return '<li class="dropdown'.($submenu ? ' submenu' : '').'">
+        return '<li class="dropdown ' . implode(' ', $classes) . '">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$dropdown_name.' <span class="caret"></span></a>
           <ul class="dropdown-menu">
             '.$this->add($elements).'
@@ -47,7 +47,6 @@ class Bootstrap extends AbstractMenu
                 $this->menu .= $this->add(config('kregel.menu.login.sign-in'));
             }
         }
-
         return $this;
     }
 
