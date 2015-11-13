@@ -1,6 +1,9 @@
 # What is it?
 This is an menu generator build with Laravel and Bootstrap in mind
 
+# Demo
+You can see a demo [on my website](http://menu.austinkregel.com)
+
 # Set up
  1. `composer require kregel/menu` or add  `"kregel/menu": "dev-master"` to your composer.json file.
  2. Register the service provider with your `config/app.php` file.
