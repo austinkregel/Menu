@@ -26,7 +26,7 @@ class Menu
         switch ($this->framework) {
             case 'bootstrap':
                 return new Frameworks\Bootstrap();
-            case 'materilize':
+            case 'materialize':
                 return new Frameworks\Materialize();
             default:
                 /** @var Closure $customClass */
