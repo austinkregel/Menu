@@ -9,7 +9,7 @@ class Materialize extends AbstractMenu
 {
     public $menu = '';
     public $dropdowns = '';
-    private $menuCount = 1;
+    private $menuCount = 0;
     public function add(Array $options)
     {
         $tmpmenu = '';
@@ -29,11 +29,12 @@ class Materialize extends AbstractMenu
 
     public function addDropdown($dropdown_name, $elements, $classes = [])
     {
+        $this->menuCount++;
         $this->dropdowns .= '<ul class="dropdown-content" id="dropdown-'.$this->menuCount.'">
             '.$this->add($elements).'
         </ul>';
         return '<li class="' . implode(' ', $classes) . '">
-            <a href="#" class="dropdown-button" data-activates="dropdown-'.$this->menuCount.'" role="button" aria-haspopup="true" aria-expanded="false">'.$dropdown_name.' <span class="caret"></span></a>
+            <a href="#" class="dropdown-button" data-activates="dropdown-'.$this->menuCount.'" role="button" aria-haspopup="true" aria-expanded="false">'.$dropdown_name.' <i class="material-icons right">arrow_drop_down</i></a>
         </li>';
     }
 
@@ -68,11 +69,7 @@ class Materialize extends AbstractMenu
             }
         }
         if (!is_array($menu)) {
-            if (empty($item_name)) {
-                return '<li class="dropdown-header">'.$menu.'</li>'; // Probably wont show anything.
-            } else {
-                return '<li class="divider"></li>';
-            }
+            return '<li class="divider"></li>';
         }
 
         return '<li>
