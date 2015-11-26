@@ -1,3 +1,6 @@
+[![downloads](https://img.shields.io/packagist/dt/kregel/menu.svg)](https://packagist.org/packages/kregel/menu)
+
+
 # What is it?
 This is an menu generator build with Laravel and Bootstrap in mind
 
