@@ -26,7 +26,7 @@ abstract class AbstractMenu
      * and this element needs to be some kind of dropdown.
      *
      * @param String $dropdown_name This will be name the name of the dropdown
-     * @param Array $elements This will be an array of arrays, foreach
+     * @param Array  $elements      This will be an array of arrays, foreach
      *                              Element in the array it will make a link
      *                              icon and name.
      *
@@ -63,12 +63,14 @@ abstract class AbstractMenu
 
     /**
      * @param $link
+     *
      * @return string
      */
     public function linkBuilder($link)
     {
         if (is_array($link)) {
             list($route, $params) = $link;
+
             return $this->generateLink($route, $params);
         } else {
             return $this->generateLink($link, null);
@@ -81,7 +83,8 @@ abstract class AbstractMenu
      * the values.
      *
      * @param String $route
-     * @param mixed $params
+     * @param mixed  $params
+     *
      * @return string
      */
     protected function generateLink($route, $params = null)
@@ -109,16 +112,18 @@ abstract class AbstractMenu
     }
 
     /**
-     * This function will evaluate the value of the param $string
+     * This function will evaluate the value of the param $string.
+     *
      * @param $string
      * @param bool|false $return_array
+     *
      * @return null|string|array
      */
     public function stringify($string, $return_array = false)
     {
         // Makes sure that it's not empty and it's not a 0, 1, 2 etc...
         if (empty($string) && !is_numeric($string)) {
-            return null;
+            return;
             // If the string is actually a closure, execute the closure and return it.
         } elseif ($string instanceof Closure) {
             // Run $this->stringify because we don't know what it returns and we want to be sure it's a string. or array
@@ -137,11 +142,11 @@ abstract class AbstractMenu
                 return $string->__toString();// this will return the is_array() version of the object,
                 // If $string is an object cast it to an array and re-run this function.
             } else {
-                return $this->stringify((array)$string, $return_array);
+                return $this->stringify((array) $string, $return_array);
             }
             // converting it to an array then to a string imploding with '-'. #recursion
         } elseif (is_numeric($string)) {
-            return (string)$string;
+            return (string) $string;
             // As long as it's a string just return the $string variable.
         } elseif (is_string($string)) {
             return $string;
@@ -178,6 +183,7 @@ abstract class AbstractMenu
 
     /**
      * @param $route
+     *
      * @return string
      */
     public function routify($route)
@@ -187,6 +193,7 @@ abstract class AbstractMenu
 
     /**
      * @param $params
+     *
      * @return string|array
      */
     public function routeparamify($params)
@@ -219,14 +226,13 @@ abstract class AbstractMenu
         foreach ($attr as $name => $value) {
             if (!empty($name) && !empty($value)) {
                 if (is_array($value)) {
-                    $attr_string .= ' ' . $name . '="' . implode(' ', $value) . '"';
+                    $attr_string .= ' '.$name.'="'.implode(' ', $value).'"';
                 } else {
-                    $attr_string .= ' ' . $name . '="' . $value . '"';
+                    $attr_string .= ' '.$name.'="'.$value.'"';
                 }
             }
         }
 
         return $attr_string;
     }
-
 }

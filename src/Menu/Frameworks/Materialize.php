@@ -29,11 +29,12 @@ class Materialize extends AbstractMenu
 
     public function addDropdown($dropdown_name, $elements, $classes = [])
     {
-        $this->menuCount++;
+        ++$this->menuCount;
         $this->dropdowns .= '<ul class="dropdown-content" id="dropdown-'.$this->menuCount.'">
             '.$this->add($elements).'
         </ul>';
-        return '<li class="' . implode(' ', $classes) . '">
+
+        return '<li class="'.implode(' ', $classes).'">
             <a href="#" class="dropdown-button" data-activates="dropdown-'.$this->menuCount.'" role="button" aria-haspopup="true" aria-expanded="false">'.$dropdown_name.' <i class="material-icons right">arrow_drop_down</i></a>
         </li>';
     }
@@ -49,12 +50,14 @@ class Materialize extends AbstractMenu
                 $this->menu .= $this->add(config('kregel.menu.login.sign-in'));
             }
         }
+
         return $this;
     }
 
     protected function buildMenu($menu)
     {
         $this->menu = $this->add($menu);
+
         return $this;
     }
 

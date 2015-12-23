@@ -1,6 +1,6 @@
 <?php
-$user_img   = config('kregel.menu.login.user-nav.user-img');
-$left_foot  = config('kregel.menu.login.user-nav.footer-left');
+$user_img = config('kregel.menu.login.user-nav.user-img');
+$left_foot = config('kregel.menu.login.user-nav.footer-left');
 $right_foot = config('kregel.menu.login.user-nav.footer-right');
 ?>
 <li class="dropdown user user-menu">
@@ -26,10 +26,11 @@ $right_foot = config('kregel.menu.login.user-nav.footer-right');
             $body = config('kregel.menu.login.user-nav.user-body');
             $body_elements = [];
             foreach ($body as $text => $closure) {
-                if($closure instanceof Closure)
+                if ($closure instanceof Closure) {
                     $body[$text] = $closure();
-                else
+                } else {
                     $body[$text] = $closure;
+                }
             }
             ?>
             @foreach( $body as $text => $link)

@@ -28,7 +28,7 @@ class Bootstrap extends AbstractMenu
 
     public function addDropdown($dropdown_name, $elements, $classes = [])
     {
-        return '<li class="dropdown ' . implode(' ', $classes) . '">
+        return '<li class="dropdown '.implode(' ', $classes).'">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$dropdown_name.' <span class="caret"></span></a>
           <ul class="dropdown-menu">
             '.$this->add($elements).'
@@ -47,12 +47,14 @@ class Bootstrap extends AbstractMenu
                 $this->menu .= $this->add(config('kregel.menu.login.sign-in'));
             }
         }
+
         return $this;
     }
 
     protected function buildMenu($menu)
     {
         $this->menu = $this->add($menu);
+
         return $this;
     }
 
