@@ -8,7 +8,8 @@ use Kregel\Menu\Interfaces\AbstractMenu;
 class Bootstrap extends AbstractMenu
 {
     public $menu = '';
-
+    public $dropdowns = '';
+    private $menuCount = 0;
     public function add(Array $options)
     {
         $tmpmenu = '';
