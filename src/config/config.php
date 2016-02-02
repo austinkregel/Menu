@@ -14,7 +14,7 @@ return [
             return config('kregel.menu.brand.default');
         },
         'default' => 'Something Awesome!',
-        'link' => '/',
+        'link'    => '/',
     ],
     'theme' => 'navbar-default',
     'items' => [

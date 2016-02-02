@@ -10,7 +10,8 @@ class Materialize extends AbstractMenu
     public $menu = '';
     public $dropdowns = '';
     private $menuCount = 0;
-    public function add(Array $options)
+
+    public function add(array $options)
     {
         $tmpmenu = '';
         // die(var_dump($options));
@@ -18,7 +19,7 @@ class Materialize extends AbstractMenu
             if (is_array($linkIconArray) && !isset($linkIconArray['link']) && !isset($linkIconArray['icon'])) {
                 $tmpmenu .= $this->addDropdown($inner_text, $linkIconArray, ['submenu']);
             } elseif (is_object($linkIconArray)) {
-                $tmpmenu .= $this->addDropdown($inner_text, (Array) $linkIconArray, ['submenu']);
+                $tmpmenu .= $this->addDropdown($inner_text, (array) $linkIconArray, ['submenu']);
             } else {
                 $tmpmenu .= $this->build($inner_text, $linkIconArray);
             }
@@ -83,10 +84,11 @@ class Materialize extends AbstractMenu
             </li>
         ';
     }
+
     /**
      * This returns the value of the menu.
      *
-     * @return String
+     * @return string
      */
     public function devour()
     {
