@@ -17,16 +17,16 @@ abstract class AbstractMenu
      * This function is for syntax sugar, it should call several
      * other function such as buildFRAMEWORKNAME($menu).
      *
-     * @param Array $options Should be some kind of array/key pair
+     * @param array $options Should be some kind of array/key pair
      */
-    abstract public function add(Array $options);
+    abstract public function add(array $options);
 
     /**
      * This function will be used when you try to build an element
      * and this element needs to be some kind of dropdown.
      *
-     * @param String $dropdown_name This will be name the name of the dropdown
-     * @param Array  $elements      This will be an array of arrays, foreach
+     * @param string $dropdown_name This will be name the name of the dropdown
+     * @param array  $elements      This will be an array of arrays, foreach
      *                              Element in the array it will make a link
      *                              icon and name.
      *
@@ -57,7 +57,7 @@ abstract class AbstractMenu
     /**
      * Builds the entire HTML / DOM for the menu.
      *
-     * @return String HTML / DOM
+     * @return string HTML / DOM
      */
     abstract public function devour();
 
@@ -82,7 +82,7 @@ abstract class AbstractMenu
      * from a raw url or if it is a route. It will also grab the params for
      * the values.
      *
-     * @param String $route
+     * @param string $route
      * @param mixed  $params
      *
      * @return string
@@ -139,7 +139,7 @@ abstract class AbstractMenu
         } elseif (is_object($string)) {
             // If $string is an object check if it has a __toString function, if it does return that.
             if (method_exists($string, '__toString')) {
-                return $string->__toString();// this will return the is_array() version of the object,
+                return $string->__toString(); // this will return the is_array() version of the object,
                 // If $string is an object cast it to an array and re-run this function.
             } else {
                 return $this->stringify((array) $string, $return_array);
@@ -156,7 +156,7 @@ abstract class AbstractMenu
         // Sorry, maybe try casting it or implementing a
         // __toString() method.
         throw new UnexpectedTypeException("We don't know what type your variable is!",
-            'Anything but that');// Not exactly helpful...
+            'Anything but that'); // Not exactly helpful...
     }
 
     /**
@@ -205,7 +205,7 @@ abstract class AbstractMenu
      * This should be called within the add function to ensure
      * that the menu will be built the way it should be.
      *
-     * @param String $menu A string full of HTML
+     * @param string $menu A string full of HTML
      *
      * @return $this
      */
@@ -216,11 +216,11 @@ abstract class AbstractMenu
      * to the desired html element array for ease of building
      * raw html / dom objects.
      *
-     * @param Array $attr Key/ value pair for building the menu
+     * @param array $attr Key/ value pair for building the menu
      *
-     * @return String HTML / DOM raw html
+     * @return string HTML / DOM raw html
      */
-    protected function attributes(Array $attr)
+    protected function attributes(array $attr)
     {
         $attr_string = '';
         foreach ($attr as $name => $value) {

@@ -10,13 +10,14 @@ class Menu
     public $framework;
 
     public $menu = '';
+
     /**
      * This will tell the menu builder to use a spessific css
      * framework, check if what's defined as the $css_framework
      * if the config value is set then use this $css_framework over
      * the config value.
      *
-     * @param String $css_framework
+     * @param string $css_framework
      *
      * @return This this
      */

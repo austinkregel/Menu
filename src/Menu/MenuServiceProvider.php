@@ -20,6 +20,7 @@ class MenuServiceProvider extends ServiceProvider
     {
         //
     }
+
     /**
      * Bootstrap any application services.
      */
