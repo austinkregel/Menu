@@ -9,7 +9,7 @@ class Bootstrap extends AbstractMenu
 {
     public $menu = '';
     public $dropdowns = '';
-    private $menuCount = 0;
+    public $menuCount = 0;
 
     public function add(array $options)
     {
