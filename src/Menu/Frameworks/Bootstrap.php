@@ -53,7 +53,7 @@ class Bootstrap extends AbstractMenu
         return $this;
     }
 
-    protected function buildMenu($menu)
+    public function buildMenu($menu)
     {
         $this->menu = $this->add($menu);
 
