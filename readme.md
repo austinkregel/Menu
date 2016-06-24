@@ -41,7 +41,7 @@ Well... Let me help you out here.
 There are quite a few things that you should really change. Something like the `brand.name`, should be changed to your brand's name. Whether that is your business's name, your product/projects name, or your name. You don't need to use [font-awesome](http://fortawesome.github.io/Font-Awesome)(but you totally should). 
 
 ###### Theme
-I usually leave the theme alone; however, you can chagne it to what ever you want.
+I usually leave the theme alone; however, you can change it to what ever you want.
 
 ###### Items
 The array within the "items" section is every element that will be located on every page whether logged in or logged out.
