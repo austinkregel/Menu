@@ -11,17 +11,23 @@ class Bootstrap extends AbstractMenu
     public $dropdowns = '';
     public $menuCount = 0;
 
-    public function add(array $options)
+    public function add($options, $bool = false)
     {
         $tmpmenu = '';
-        // die(var_dump($options));
+
         foreach ($options as $inner_text => $linkIconArray) {
+//            if($bool)
+//                dd($linkIconArray, is_object($linkIconArray[3]));
+
             if (is_array($linkIconArray) && !isset($linkIconArray['link']) && !isset($linkIconArray['icon'])) {
                 $tmpmenu .= $this->addDropdown($inner_text, $linkIconArray, ['submenu']);
-            } elseif (is_object($linkIconArray)) {
-                $tmpmenu .= $this->addDropdown($inner_text, (array) $linkIconArray, ['submenu']);
+            } elseif (is_object($linkIconArray) && ! is_callable($linkIconArray)) {
+                $tmpmenu .= $this->addDropdown($inner_text, (array)$linkIconArray, ['submenu']);
+            } elseif($linkIconArray instanceof \Closure){
+                $tmpmenu .= $this->add($linkIconArray());
             } else {
                 $tmpmenu .= $this->build($inner_text, $linkIconArray);
+
             }
         }
 
@@ -42,11 +48,12 @@ class Bootstrap extends AbstractMenu
     {
         $this->menu = '';
         $this->menu .= $this->add(config('kregel.menu.items'));
+//        dd(config('kregel.menu.login.sign-out'));
         if (config('kregel.menu.login.enabled')) {
             if (Auth::check()) {
-                $this->menu .= $this->add(config('kregel.menu.login.sign-out'));
+                $this->menu .= $this->add(config('kregel.menu.login.sign-out'), true);
             } else {
-                $this->menu .= $this->add(config('kregel.menu.login.sign-in'));
+                $this->menu .= $this->add(config('kregel.menu.login.sign-in'), true);
             }
         }
 
