@@ -16,16 +16,14 @@ class Bootstrap extends AbstractMenu
         $tmpmenu = '';
 
         foreach ($options as $inner_text => $linkIconArray) {
-
             if (is_array($linkIconArray) && !isset($linkIconArray['link']) && !isset($linkIconArray['icon'])) {
                 $tmpmenu .= $this->addDropdown($inner_text, $linkIconArray, ['submenu']);
-            } elseif (is_object($linkIconArray) && ! is_callable($linkIconArray)) {
-                $tmpmenu .= $this->addDropdown($inner_text, (array)$linkIconArray, ['submenu']);
-            } elseif($linkIconArray instanceof \Closure){
+            } elseif (is_object($linkIconArray) && !is_callable($linkIconArray)) {
+                $tmpmenu .= $this->addDropdown($inner_text, (array) $linkIconArray, ['submenu']);
+            } elseif ($linkIconArray instanceof \Closure) {
                 $tmpmenu .= $this->add($linkIconArray());
             } else {
                 $tmpmenu .= $this->build($inner_text, $linkIconArray);
-
             }
         }
 
