@@ -19,7 +19,7 @@ abstract class AbstractMenu
      *
      * @param array $options Should be some kind of array/key pair
      */
-    abstract public function add(array $options);
+    abstract public function add($options);
 
     /**
      * This function will be used when you try to build an element
