@@ -11,13 +11,11 @@ class Bootstrap extends AbstractMenu
     public $dropdowns = '';
     public $menuCount = 0;
 
-    public function add($options, $bool = false)
+    public function add($options)
     {
         $tmpmenu = '';
 
         foreach ($options as $inner_text => $linkIconArray) {
-//            if($bool)
-//                dd($linkIconArray, is_object($linkIconArray[3]));
 
             if (is_array($linkIconArray) && !isset($linkIconArray['link']) && !isset($linkIconArray['icon'])) {
                 $tmpmenu .= $this->addDropdown($inner_text, $linkIconArray, ['submenu']);
@@ -51,9 +49,9 @@ class Bootstrap extends AbstractMenu
 //        dd(config('kregel.menu.login.sign-out'));
         if (config('kregel.menu.login.enabled')) {
             if (Auth::check()) {
-                $this->menu .= $this->add(config('kregel.menu.login.sign-out'), true);
+                $this->menu .= $this->add(config('kregel.menu.login.sign-out'));
             } else {
-                $this->menu .= $this->add(config('kregel.menu.login.sign-in'), true);
+                $this->menu .= $this->add(config('kregel.menu.login.sign-in'));
             }
         }
 
