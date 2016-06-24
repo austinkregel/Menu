@@ -11,15 +11,17 @@ class Materialize extends AbstractMenu
     public $dropdowns = '';
     public $menuCount = 0;
 
-    public function add(array $options)
+    public function add($options)
     {
         $tmpmenu = '';
-        // die(var_dump($options));
+
         foreach ($options as $inner_text => $linkIconArray) {
             if (is_array($linkIconArray) && !isset($linkIconArray['link']) && !isset($linkIconArray['icon'])) {
                 $tmpmenu .= $this->addDropdown($inner_text, $linkIconArray, ['submenu']);
-            } elseif (is_object($linkIconArray)) {
-                $tmpmenu .= $this->addDropdown($inner_text, (array) $linkIconArray, ['submenu']);
+            } elseif (is_object($linkIconArray) && !is_callable($linkIconArray)) {
+                $tmpmenu .= $this->addDropdown($inner_text, (array)$linkIconArray, ['submenu']);
+            } elseif ($linkIconArray instanceof \Closure) {
+                $tmpmenu .= $this->add($linkIconArray());
             } else {
                 $tmpmenu .= $this->build($inner_text, $linkIconArray);
             }
@@ -31,12 +33,12 @@ class Materialize extends AbstractMenu
     public function addDropdown($dropdown_name, $elements, $classes = [])
     {
         ++$this->menuCount;
-        $this->dropdowns .= '<ul class="dropdown-content" id="dropdown-'.$this->menuCount.'">
-            '.$this->add($elements).'
+        $this->dropdowns .= '<ul class="dropdown-content" id="dropdown-' . $this->menuCount . '">
+            ' . $this->add($elements) . '
         </ul>';
 
-        return '<li class="'.implode(' ', $classes).'">
-            <a href="#" class="dropdown-button" data-activates="dropdown-'.$this->menuCount.'" role="button" aria-haspopup="true" aria-expanded="false">'.$dropdown_name.' <i class="material-icons right">arrow_drop_down</i></a>
+        return '<li class="' . implode(' ', $classes) . '">
+            <a href="#" class="dropdown-button" data-activates="dropdown-' . $this->menuCount . '" role="button" aria-haspopup="true" aria-expanded="false">' . $dropdown_name . ' <i class="material-icons right">arrow_drop_down</i></a>
         </li>';
     }
 
@@ -77,9 +79,9 @@ class Materialize extends AbstractMenu
         }
 
         return '<li>
-                <a '.$this->attributes(['href' => $this->linkBuilder($menu['link']), $attributes]).'>
-               '.(!empty($icon) ? '<i '.$this->attributes(['class' => $icon]).'></i>
-                &nbsp;' : '').$item_name.'
+                <a ' . $this->attributes(['href' => $this->linkBuilder($menu['link']), $attributes]) . '>
+               ' . (!empty($icon) ? '<i ' . $this->attributes(['class' => $icon]) . '></i>
+                &nbsp;' : '') . $item_name . '
               </a>
             </li>
         ';
